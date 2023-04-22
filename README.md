@@ -37,7 +37,7 @@ Output:
 ### `gcd` and `lcm`
 
 ```ts
-import { gcd, lcm } from "./mod.ts";
+import { gcd, lcm } from "https://deno.land/x/tiny_math@$VERSION/mod.ts";
 
 console.log(gcd(27, 60));
 console.log(gcd([24, 32, 21]));
@@ -56,7 +56,7 @@ Output:
 
 ## Documentation
 
-Please go to [this page](https://deno.land/x/tiny_math?doc) and navigate to any file you want to see.
+Please go to [this page](https://deno.land/x/tiny_math?doc) and navigate to any function you want to see.
 
 ## License
 
