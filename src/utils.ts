@@ -9,9 +9,7 @@ export function isEqualApprox(
   b: number,
   tolerance = Number.EPSILON,
 ) {
-  if (a === b) {
-    return true;
-  }
+  if (a === b) return true;
 
   return Math.abs(a - b) < tolerance;
 }

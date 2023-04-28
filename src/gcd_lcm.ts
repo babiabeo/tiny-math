@@ -1,4 +1,4 @@
-/** Return the greatest common divisor (GCD) of two or more given numbers */
+/** Return the greatest common divisor (GCD) of the specified integers */
 export function gcd(...integers: number[]) {
   if (!integers.every((n) => Number.isInteger(n))) {
     return NaN;
@@ -17,7 +17,7 @@ export function gcd(...integers: number[]) {
   });
 }
 
-/** Return the least common multiple (LCM) of two or more given numbers */
+/** Return the least common multiple (LCM) of the specified integers */
 export function lcm(...integers: number[]) {
   if (!integers.every((n) => Number.isInteger(n))) {
     return NaN;
