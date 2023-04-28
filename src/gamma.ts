@@ -1,6 +1,6 @@
-import { factorial } from "./factorial.ts";
+import { permutation } from "./combinatorics.ts";
 
-const MAX_GAM = 171.624376956302725;
+const MAX_GAM = 171.62;
 
 // ref: https://mrob.com/pub/ries/lanczos-gamma.html#code
 
@@ -33,16 +33,14 @@ export function gamma(n: number): number {
     }
     // z is an integer
     // => gamma(z) = (z - 1)!
-    return factorial(n - 1);
+    return permutation(n - 1);
   }
 
   if (n < 0.5) {
     return Math.PI / (Math.sin(Math.PI * n) * gamma(1 - n));
   }
 
-  if (n >= MAX_GAM) {
-    return Infinity;
-  }
+  if (n >= MAX_GAM) return Infinity;
 
   n--;
 
@@ -58,21 +56,10 @@ export function gamma(n: number): number {
 
 /** Return the logarithm of the gamma function of `n` using the Lanczos method */
 export function lgamma(n: number): number {
-  if (n < 0) {
-    return NaN;
-  }
-
-  if (n === 0) {
-    return Infinity;
-  }
-
-  if (!isFinite(n)) {
-    return n;
-  }
-
-  if (n === 1 || n === 2) {
-    return 0;
-  }
+  if (n < 0) return NaN;
+  if (n === 0) return Infinity;
+  if (!isFinite(n)) return n;
+  if (n === 1 || n === 2) return 0;
 
   if (n < 0.5) {
     // Use Euler's reflection formula:

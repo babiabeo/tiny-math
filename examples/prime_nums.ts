@@ -8,4 +8,4 @@ for (let i = 0; i < 100; i++) {
   }
 }
 
-console.log(`From 0 to 100, the prime numbers are:\n${primes.join(", ")}`);
+console.log(`From 0 to 99, the prime numbers are:\n${primes.join(", ")}`);

@@ -77,7 +77,7 @@ export function prevPrime(n: number, ith = 1) {
     return NaN;
   }
 
-  let x = Math.floor(n);
+  let x = Math.ceil(n);
   let primeCount = ith;
 
   while (primeCount > 0) {
