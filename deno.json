@@ -1,11 +1,13 @@
 {
   "fmt": {
-    "exclude": [
-      "./LICENSE",
-      "./deno.json",
-      "./README.md",
-      "./.vscode",
-      "./deno.lock"
-    ]
+    "files": {
+      "exclude": [
+        "./LICENSE",
+        "./deno.json",
+        "./README.md",
+        "./.vscode",
+        "./deno.lock"
+      ]
+    }
   }
 }
