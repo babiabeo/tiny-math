@@ -1,5 +1,5 @@
 import { assertEquals } from "../deps.ts";
-import { isEqualApprox, isNatural, clamp } from "../src/utils.ts";
+import { clamp, isEqualApprox, isNatural } from "../src/utils.ts";
 
 // isNatural
 
