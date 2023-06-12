@@ -25,7 +25,7 @@ const P = [
   0.36899182659531622704e-5,
 ];
 
-/** Return the gamma function of `n` using the Lanczos method */
+/** Return the gamma function of `n` using the Lanczos method. */
 export function gamma(n: number): number {
   if (Number.isInteger(n)) {
     if (n <= 0 || n > 171) {
@@ -54,7 +54,7 @@ export function gamma(n: number): number {
   return Math.sqrt(2 * Math.PI) * Math.pow(t, n + 0.5) * Math.exp(-t) * x;
 }
 
-/** Return the logarithm of the gamma function of `n` using the Lanczos method */
+/** Return the logarithm of the gamma function of `n` using the Lanczos method. */
 export function lgamma(n: number): number {
   if (n < 0) return NaN;
   if (n === 0) return Infinity;

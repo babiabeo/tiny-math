@@ -1,5 +1,5 @@
 import { assertEquals } from "../deps.ts";
-import { isPrime, nextPrime, prevPrime, primeFact } from "./prime.ts";
+import { isPrime, nextPrime, prevPrime, primeFact } from "../src/prime.ts";
 
 // isPrime
 
@@ -20,14 +20,14 @@ Deno.test({
 // nextPrime
 
 Deno.test({
-  name: "The 8th prime number after 4 is 29",
+  name: "The 8th prime number after 4",
   fn: () => {
     assertEquals(nextPrime(4, 8), 29);
   },
 });
 
 Deno.test({
-  name: "The 1st prime number after 5 is 7",
+  name: "The 1st prime number after 5",
   fn: () => {
     assertEquals(nextPrime(5), 7);
   },
@@ -36,14 +36,14 @@ Deno.test({
 // prevPrime
 
 Deno.test({
-  name: "The 8th prime number before 44 is 17",
+  name: "The 8th prime number before 44",
   fn: () => {
     assertEquals(prevPrime(44, 8), 17);
   },
 });
 
 Deno.test({
-  name: "The 1st prime number before 90 is 89",
+  name: "The 1st prime number before 90",
   fn: () => {
     assertEquals(prevPrime(90), 89);
   },
@@ -52,14 +52,14 @@ Deno.test({
 // primeFact
 
 Deno.test({
-  name: "Prime factorization of 45 is 3 * 3 * 5",
+  name: "Prime factorization of 45",
   fn: () => {
     assertEquals(primeFact(45), [3, 3, 5]);
   },
 });
 
 Deno.test({
-  name: "Prime factorization of 123 is 3 * 41",
+  name: "Prime factorization of 123",
   fn: () => {
     assertEquals(primeFact(123), [3, 41]);
   },

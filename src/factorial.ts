@@ -1,6 +1,6 @@
 import { isNatural } from "./utils.ts";
 
-/** Return the factorial of the given natural number */
+/** Return the factorial of the given natural number. */
 export function factorial(n: number) {
   if (!isNatural(n)) return NaN;
   if (n <= 1) return 1;
@@ -12,7 +12,7 @@ export function factorial(n: number) {
   return n;
 }
 
-/** Return the double factorial of the given natural number */
+/** Return the double factorial of the given natural number. */
 export function doubleFactorial(n: number) {
   if (!isNatural(n)) return NaN;
   if (n <= 1) return 1;
@@ -27,7 +27,7 @@ export function doubleFactorial(n: number) {
   return factorial(2 * k) / (Math.pow(2, k) * factorial(k));
 }
 
-/** Return the superfactorial of the given natural number */
+/** Return the superfactorial of the given natural number. */
 export function superFactorial(n: number) {
   if (!isNatural(n)) return NaN;
   if (n <= 1) return 1;

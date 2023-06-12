@@ -1,6 +1,6 @@
 import { isNatural } from "./utils.ts";
 
-/** Whether the given number is prime */
+/** Whether the given number is prime. */
 export function isPrime(n: number) {
   if (!isNatural(n)) {
     return false;
@@ -19,7 +19,7 @@ export function isPrime(n: number) {
   return true;
 }
 
-/** Return the prime factorization of `n` */
+/** Return the prime factorization of `n`. */
 export function primeFact(n: number) {
   if (!isNatural(n)) {
     return [];
@@ -46,7 +46,7 @@ export function primeFact(n: number) {
   return primes;
 }
 
-/** Return the `ith` prime number after `n` */
+/** Return the `ith` prime number after `n`. */
 export function nextPrime(n: number, ith = 1) {
   if (n < 0 || !Number.isInteger(ith) || ith < 1) {
     return NaN;
@@ -67,7 +67,7 @@ export function nextPrime(n: number, ith = 1) {
   return x;
 }
 
-/** Return the `ith` prime number before `n` */
+/** Return the `ith` prime number before `n`. */
 export function prevPrime(n: number, ith = 1) {
   if (n < 3) {
     throw new Error("No preceding primes");
