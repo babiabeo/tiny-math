@@ -1,4 +1,4 @@
-name: deno-ci
+name: ci
 
 on:
   push:
@@ -31,8 +31,17 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }}
 
-      - name: Run tests
-        run: deno test -A
+      - name: Run tests canary
+        run: deno task test
+
+      - name: Generate lcov
+        run: deno task cov:gen
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          name: ${{ matrix.os }}-${{ matrix.deno }}
+          files: cov.lcov
 
   lint:
     runs-on: ubuntu-22.04

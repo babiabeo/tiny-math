@@ -1,54 +1,29 @@
-import { assertEquals } from "../deps.ts";
+import { assertEquals } from "@std/assert/assert_equals";
 import {
   doubleFactorial,
   factorial,
   superFactorial,
 } from "../src/factorial.ts";
 
-// factorial
-
-Deno.test({
-  name: "The factorial of 7",
-  fn: () => {
-    assertEquals(factorial(7), 5040);
-  },
+Deno.test("factorial()", () => {
+  assertEquals(factorial(7), 5040);
+  assertEquals(factorial(0), 1);
+  assertEquals(factorial(-1), NaN);
+  assertEquals(factorial(3.14), NaN);
 });
 
-Deno.test({
-  name: "The factorial of 0",
-  fn: () => {
-    assertEquals(factorial(0), 1);
-  },
+Deno.test("doubleFactorial()", () => {
+  assertEquals(doubleFactorial(1), 1);
+  assertEquals(doubleFactorial(10), 3840);
+  assertEquals(doubleFactorial(15), 2_027_025);
+  assertEquals(doubleFactorial(-1), NaN);
+  assertEquals(doubleFactorial(3.14), NaN);
 });
 
-// doubleFactorial
-
-Deno.test({
-  name: "The double factorial of 10",
-  fn: () => {
-    assertEquals(doubleFactorial(10), 3840);
-  },
-});
-
-Deno.test({
-  name: "The double factorial of 15",
-  fn: () => {
-    assertEquals(doubleFactorial(15), 2_027_025);
-  },
-});
-
-// doubleFactorial
-
-Deno.test({
-  name: "The superfactorial of 4",
-  fn: () => {
-    assertEquals(superFactorial(4), 288);
-  },
-});
-
-Deno.test({
-  name: "The superfactorial of 15",
-  fn: () => {
-    assertEquals(superFactorial(6), 24_883_200);
-  },
+Deno.test("superFactorial()", () => {
+  assertEquals(superFactorial(1), 1);
+  assertEquals(superFactorial(4), 288);
+  assertEquals(superFactorial(6), 24_883_200);
+  assertEquals(superFactorial(-1), NaN);
+  assertEquals(superFactorial(3.14), NaN);
 });

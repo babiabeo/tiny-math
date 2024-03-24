@@ -25,11 +25,34 @@ const P = [
   0.36899182659531622704e-5,
 ];
 
-/** Return the gamma function of `n` using the Lanczos method. */
+/**
+ * Computes the gamma function of `n` using the Lanczos method.
+ * - if `n` is 0, `+Infinity` is returned.
+ * - if `n` < 0, `NaN` is returned.
+ * - if `n` is `-Infinity`, `NaN` is returned.
+ * - if `n` is `+Infinity`, `+Infinity` is returned.
+ * - if `n` is `NaN`, `NaN` is returned.
+ *
+ * @example
+ * ```ts
+ * import { gamma } from "@babia/tiny-math";
+ *
+ * gamma(0); // Infinity
+ * gamma(-1); // NaN
+ * gamma(NaN); // NaN
+ * ```
+ */
 export function gamma(n: number): number {
+  if (isNaN(n) || n < 0 || n === Number.NEGATIVE_INFINITY) {
+    return NaN;
+  }
+  if (n === 0 || n === Number.POSITIVE_INFINITY) {
+    return Number.POSITIVE_INFINITY;
+  }
+
   if (Number.isInteger(n)) {
-    if (n <= 0 || n > 171) {
-      return Infinity;
+    if (n > 171) {
+      return Number.POSITIVE_INFINITY;
     }
     // z is an integer
     // => gamma(z) = (z - 1)!
@@ -40,7 +63,9 @@ export function gamma(n: number): number {
     return Math.PI / (Math.sin(Math.PI * n) * gamma(1 - n));
   }
 
-  if (n >= MAX_GAM) return Infinity;
+  if (n >= MAX_GAM) {
+    return Number.POSITIVE_INFINITY;
+  }
 
   n--;
 
@@ -50,15 +75,32 @@ export function gamma(n: number): number {
   }
 
   const t = n + G + 0.5;
-
   return Math.sqrt(2 * Math.PI) * Math.pow(t, n + 0.5) * Math.exp(-t) * x;
 }
 
-/** Return the logarithm of the gamma function of `n` using the Lanczos method. */
+/**
+ * Computes the natural logarithm of the gamma function of `n` using the Lanczos method.
+ * - if `n` is `NaN`, `NaN` is returned.
+ * - if `n` < 0, `NaN` is returned.
+ * - if `n` is 0, `+Infinity` is returned.
+ * - if `n` is not finite, `+Infinity` is returned.
+ * - if `n` is 1, `0` is returned.
+ * - if `n` is 2, `0` is returned.
+ *
+ * @example
+ * ```ts
+ * import { lgamma } from "@babia/tiny-math";
+ *
+ * lgamma(2); // 0
+ * lgamma(-1); // NaN
+ * lgamma(-Infinity); // Infinity
+ * ```
+ */
 export function lgamma(n: number): number {
-  if (n < 0) return NaN;
-  if (n === 0) return Infinity;
-  if (!isFinite(n)) return n;
+  if (n < 0 || isNaN(n)) return NaN;
+  if (n === 0 || !isFinite(n)) {
+    return Number.POSITIVE_INFINITY;
+  }
   if (n === 1 || n === 2) return 0;
 
   if (n < 0.5) {

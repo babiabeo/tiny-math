@@ -1,66 +1,32 @@
-import { assertEquals } from "../deps.ts";
+import { assertEquals } from "@std/assert/assert_equals";
 import { isPrime, nextPrime, prevPrime, primeFact } from "../src/prime.ts";
 
-// isPrime
-
-Deno.test({
-  name: "3 is a prime number",
-  fn: () => {
-    assertEquals(isPrime(3), true);
-  },
+Deno.test("isPrime()", () => {
+  assertEquals(isPrime(3), true);
+  assertEquals(isPrime(23), true);
+  assertEquals(isPrime(10), false);
+  assertEquals(isPrime(-3), false);
+  assertEquals(isPrime(1), false);
 });
 
-Deno.test({
-  name: "10 is not a prime number",
-  fn: () => {
-    assertEquals(isPrime(10), false);
-  },
+Deno.test("nextPrime()", () => {
+  assertEquals(nextPrime(5), 7);
+  assertEquals(nextPrime(4, 8), 29);
+  assertEquals(nextPrime(10, 0), NaN);
+  assertEquals(nextPrime(-3), NaN);
 });
 
-// nextPrime
-
-Deno.test({
-  name: "The 8th prime number after 4",
-  fn: () => {
-    assertEquals(nextPrime(4, 8), 29);
-  },
+Deno.test("prevPrime()", () => {
+  assertEquals(prevPrime(44, 8), 17);
+  assertEquals(prevPrime(90), 89);
+  assertEquals(prevPrime(10, 6), NaN);
+  assertEquals(prevPrime(2), NaN);
+  assertEquals(prevPrime(-2), NaN);
 });
 
-Deno.test({
-  name: "The 1st prime number after 5",
-  fn: () => {
-    assertEquals(nextPrime(5), 7);
-  },
-});
-
-// prevPrime
-
-Deno.test({
-  name: "The 8th prime number before 44",
-  fn: () => {
-    assertEquals(prevPrime(44, 8), 17);
-  },
-});
-
-Deno.test({
-  name: "The 1st prime number before 90",
-  fn: () => {
-    assertEquals(prevPrime(90), 89);
-  },
-});
-
-// primeFact
-
-Deno.test({
-  name: "Prime factorization of 45",
-  fn: () => {
-    assertEquals(primeFact(45), [3, 3, 5]);
-  },
-});
-
-Deno.test({
-  name: "Prime factorization of 123",
-  fn: () => {
-    assertEquals(primeFact(123), [3, 41]);
-  },
+Deno.test("primeFact()", () => {
+  assertEquals(primeFact(45), [3, 3, 5]);
+  assertEquals(primeFact(123), [3, 41]);
+  assertEquals(primeFact(816), [2, 2, 2, 2, 3, 17]);
+  assertEquals(primeFact(-2), []);
 });

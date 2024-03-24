@@ -1,7 +1,18 @@
 import { isNatural } from "./utils.ts";
 
-/** Whether the given number is prime. */
-export function isPrime(n: number) {
+/**
+ * Reports whether the given number is prime.
+ *
+ * @example
+ * ```ts
+ * import { isPrime } from "@babia/tiny-math";
+ *
+ * isPrime(0); // false
+ * isPrime(1); // false
+ * isPrime(2); // true
+ * ```
+ */
+export function isPrime(n: number): boolean {
   if (!isNatural(n)) {
     return false;
   }
@@ -19,35 +30,54 @@ export function isPrime(n: number) {
   return true;
 }
 
-/** Return the prime factorization of `n`. */
-export function primeFact(n: number) {
+/**
+ * Returns an array of prime factors of `n`. Empty if `n` is not a natural number.
+ *
+ * @example
+ * ```ts
+ * import { primeFact } from "@babia/tiny-math";
+ *
+ * primeFact(3.4); // [] since 3.4 is not a natural number.
+ * primeFact(123); // [3, 41] or 123 = 3 * 41
+ * primeFact(816); // [2, 2, 2, 2, 3, 17] or 816 = 2^4 * 3 * 17
+ * ```
+ */
+export function primeFact(n: number): number[] {
   if (!isNatural(n)) {
     return [];
   }
 
   const primes = [];
-
-  if (isPrime(n)) {
-    primes.push(n);
-    return primes;
-  }
-
   let k = 2;
 
   while (n > 1) {
-    while (n % k !== 0) {
-      k++;
+    while (n % k === 0) {
+      primes.push(k);
+      n /= k;
     }
 
-    primes.push(k);
-    n /= k;
+    k++;
   }
 
   return primes;
 }
 
-/** Return the `ith` prime number after `n`. */
-export function nextPrime(n: number, ith = 1) {
+/**
+ * Returns the `ith` prime number after `n`. Returns `NaN` if it meets one of these cases:
+ * - `n` < 0.
+ * - `ith` is not an integer.
+ * - `ith` < 1.
+ *
+ * @example
+ * ```ts
+ * import { nextPrime } from "@babia/tiny-math";
+ *
+ * nextPrime(3); // 5
+ * nextPrime(7, 4); // 19
+ * nextPrime(-10, 10); // NaN
+ * ```
+ */
+export function nextPrime(n: number, ith = 1): number {
   if (n < 0 || !Number.isInteger(ith) || ith < 1) {
     return NaN;
   }
@@ -60,20 +90,30 @@ export function nextPrime(n: number, ith = 1) {
 
     if (isPrime(x)) {
       primeCount--;
-      continue;
     }
   }
 
   return x;
 }
 
-/** Return the `ith` prime number before `n`. */
-export function prevPrime(n: number, ith = 1) {
-  if (n < 3) {
-    throw new Error("No preceding primes");
-  }
-
-  if (!Number.isInteger(ith) || ith < 1) {
+/**
+ * Returns the `ith` prime number before `n`.  Returns `NaN` if it meets one of these cases:
+ * - `ith` is not an integer.
+ * - `n` < 3 (not enough prime numbers less than 3).
+ * - `ith` < 1.
+ * - Cannot find the `ith` prime number less than `n`.
+ *
+ * @example
+ * ```ts
+ * import { prevPrime } from "@babia/tiny-math";
+ *
+ * prevPrime(3); // 2
+ * prevPrime(54, 6); // 31
+ * prevPrime(-10, 10); // NaN
+ * ```
+ */
+export function prevPrime(n: number, ith: number = 1): number {
+  if (n < 3 || !Number.isInteger(ith) || ith < 1) {
     return NaN;
   }
 
@@ -89,8 +129,11 @@ export function prevPrime(n: number, ith = 1) {
       }
 
       primeCount--;
-      continue;
     }
+  }
+
+  if (primeCount > 0) {
+    return NaN;
   }
 
   return x;

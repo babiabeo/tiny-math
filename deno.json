@@ -1,11 +1,26 @@
 {
+  "name": "@babia/tiny-math",
+  "version": "0.1.5",
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^0.220.1"
+  },
+  "exports": "./mod.ts",
   "fmt": {
     "exclude": [
-      "./LICENSE",
-      "./deno.json",
-      "./README.md",
-      "./.vscode",
-      "./deno.lock"
+      "LICENSE",
+      "README.md",
+      ".vscode",
+      "deno.lock"
     ]
+  },
+  "exclude": [".vscode", "docs"],
+  "tasks": {
+    "lint": "deno fmt --check && deno lint",
+    "browser-compat": "deno run --allow-read --allow-run _tools/browser_compat.ts",
+    "test": "deno test --coverage",
+    "ok": "deno task lint && deno task browser-compat && deno task test",
+    "docs": "deno doc --html --name=\"tiny-math\" ./mod.ts",
+    "cov:html": "deno coverage --html coverage",
+    "cov:gen": "deno coverage coverage --lcov --output=cov.lcov"
   }
 }
